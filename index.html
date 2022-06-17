@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="UTF-8" />
+   <title>10430 이재준</title>
+   <style>
+    <!--궁서체-->
+   </style>
+   </head>
+   <div class="clock">
+    <body style="font-family: 'Gugi', cursive">
+   <h1>시계</h1>
+    <div id = 'clock'>
+      <body>
+    <div class="frame">
+        <div class="clock">
+          <div class="date_box">
+                <span id="year"></span>
+                <span>년</span>
+                <span id="month"></span>
+                <span>월</span>
+                <span id="date"></span>
+                <span>일</span>
+                <span id="day"></span>
+            </div>
+            <div class="time_box">
+                <span id="hours" class="large_text"></span>
+                <span class="colon">시</span>
+                <span id="minute" class="large_text"></span>
+                <span class="colon">분</span>
+                <span id="seconds" class="small_text"></span>
+                <span class="colon">초</span>
+            </div>
+             <script>
+        const watchClock = () => {
+            function leftPad(number) {
+                if (number < 10) {
+                    return `0${number}`;
+                }
+
+                return `${number}`;
+            };
+
+            function setText(selector, text) {
+                const targetElement = document.querySelector(selector);
+
+                if (!targetElement) {
+                    return;
+                }
+
+                targetElement.innerText = text;
+            };
+
+            function getDayText(index) {
+                const days = ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'];
+                return days[index];
+            };
+
+            const present = new Date();
+            const hour = leftPad(present.getHours());
+            const minute = leftPad(present.getMinutes());
+            const seconds = leftPad(present.getSeconds());
+
+            setText('#hours', hour);
+            setText('#minute', minute);
+            setText('#seconds', seconds);
+
+            const year = present.getFullYear();
+            const month = leftPad(present.getMonth() + 1);
+            const date = leftPad(present.getDate());
+            const day = getDayText(present.getDay());
+
+            setText('#year', year);
+            setText('#month', month);
+            setText('#date', date);
+            setText('#day', day);
+           };
+
+        watchClock();
+
+        const clockInterval = setInterval(watchClock, 1000);
+    </script>
+</body>
+
+</html>
